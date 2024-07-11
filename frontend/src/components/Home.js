@@ -46,41 +46,46 @@ const Home = ({
     setForceUpdate(prev => !prev); // Toggle forceUpdate to trigger data fetching
   };
 
-  const Card = ({ children }) => {
-    return <div className="bg-gray-900 rounded-lg shadow-md p-6 mb-8">{children}</div>;
-  };
-
   const StatCard = ({ title, count, onClickHandle }) => {
     return (
-      <div
-        className="bg-gray-800 rounded-lg shadow-md p-4 cursor-pointer focus:scale-95 focus:ring-3 focus:ring-blue-400 hover:scale-105 transition-transform transition-ring transition-duration-100"
-        onClick={onClickHandle}
-        tabIndex={0}
-      >
-        <p className="font-semibold text-center">{title}</p>
-        <p className="text-center text-4xl mt-2">{count}</p>
+      <div className="bg-gray-900 rounded-lg overflow-hidden shadow-md p-6 cursor-pointer hover:bg-gray-800 transition duration-200">
+        <p className="font-semibold text-center text-white">{title}</p>
+        <p className="text-center text-4xl mt-4 text-white">{count}</p>
       </div>
     );
   };
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="font-bold text-3xl text-center mb-8">Welcome to the Library Management System</h1>
-      <p className="text-center text-lg mb-8">Books organized, knowledge accessed: Simplify your library management.</p>
+      <h1 className="font-bold text-4xl text-center mb-8">Welcome to the Library Management System</h1>
+      <p className="text-lg text-center mb-12">Organize, manage, and simplify your library with ease.</p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <StatCard title="Total Books" onClickHandle={showBooks} count={counts.books} />
-        <StatCard title="Total Authors" onClickHandle={showAuthors} count={counts.authors} />
-        <StatCard title="Total Borrowers" onClickHandle={showBorrowers} count={counts.borrowers} />
+        <div className="col-span-3 lg:col-span-1">
+          <StatCard title="Total Books" onClickHandle={showBooks} count={counts.books} />
+        </div>
+        <div className="col-span-3 lg:col-span-1">
+          <StatCard title="Total Authors" onClickHandle={showAuthors} count={counts.authors} />
+        </div>
+        <div className="col-span-3 lg:col-span-1">
+          <StatCard title="Total Borrowers" onClickHandle={showBorrowers} count={counts.borrowers} />
+        </div>
+        <div className="col-span-3 lg:col-span-1">
+          <StatCard title="Checked Out Books" onClickHandle={showCheckoutBooks} count={counts.booksWithBorrower} />
+        </div>
+        <div className="col-span-3 lg:col-span-1">
+          <StatCard title="Borrowers without Books" onClickHandle={showBorrowersWithoutBook} count={counts.borrowersWithoutBook} />
+        </div>
+        <div className="col-span-3 lg:col-span-1">
+          <StatCard title="Remaining Books" onClickHandle={showRemainingBooks} count={counts.books - counts.booksWithBorrower} />
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
-        <StatCard title="Checked Out Books" onClickHandle={showCheckoutBooks} count={counts.booksWithBorrower} />
-        <StatCard title="Borrowers without Books" onClickHandle={showBorrowersWithoutBook} count={counts.borrowersWithoutBook} />
-      </div>
-
-      <div className="flex justify-center mt-8">
-        <button onClick={triggerUpdate} className="bg-gray-700 text-gray-300 py-2 px-6 rounded-lg hover:bg-gray-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-700">
+      <div className="flex justify-center mt-12">
+        <button
+          onClick={triggerUpdate}
+          className="bg-gray-700 text-gray-300 py-3 px-8 rounded-lg hover:bg-gray-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-700"
+        >
           Force Refresh Counts
         </button>
       </div>
