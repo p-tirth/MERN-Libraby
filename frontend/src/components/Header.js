@@ -61,7 +61,7 @@ const Header = ({
       <div className="container mx-auto flex items-center justify-between px-4 lg:px-8">
         <h1 onClick={goHome} className="flex items-center text-gray-800 text-2xl lg:text-3xl font-bold cursor-pointer">
           <img src={Logo} alt="Logo" className="w-10 h-10 lg:w-12 lg:h-12 mr-2 rounded-full" />
-          <span className="hidden lg:block">Library Manager</span>
+          <span className="hidden lg:block">Library Management System</span>
         </h1>
         <div className="flex items-center space-x-4">
           {/* Dropdown for New */}
