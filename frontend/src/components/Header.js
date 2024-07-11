@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Logo from '../—Pngtree—hand drawn cartoon polygon library_5357151.png';
+import Logo from '../bookshelf.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp, faBook, faUser, faEdit, faCheck, faTrash, faUserCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
