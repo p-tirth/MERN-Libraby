@@ -1,9 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Logo from '../app_logo.png';
+import Logo from '../—Pngtree—hand drawn cartoon polygon library_5357151.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faAngleUp, faBook, faUser, faEdit, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faAngleUp, faBook, faUser, faEdit, faCheck, faTrash, faUserCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
-const Header = ({ onAddBookClick, onAddBorrowerClick, onAddAuthorClick, onUpdateBookClick, onUpdateBorrowerClick, onDeleteBookClick, onDeleteBorrowerClick, onUpdateAuthorClick, onCheckinClick, onCheckoutClick, goHome }) => {
+const Header = ({
+  onAddBookClick,
+  onAddBorrowerClick,
+  onAddAuthorClick,
+  onUpdateBookClick,
+  onUpdateBorrowerClick,
+  onDeleteBookClick,
+  onDeleteBorrowerClick,
+  onUpdateAuthorClick,
+  onCheckinClick,
+  onCheckoutClick,
+  goHome,
+  onProfileClick,
+  onLogoutClick,
+}) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isUpdateDropdownOpen, setIsUpdateDropdownOpen] = useState(false);
   const [isDeleteDropdownOpen, setIsDeleteDropdownOpen] = useState(false);
@@ -43,77 +57,119 @@ const Header = ({ onAddBookClick, onAddBorrowerClick, onAddAuthorClick, onUpdate
   };
 
   return (
-    <div className="bg-gradient-to-r from-slate-900 to-blue-900 p-4 rounded-t-lg">
-      <div className="container mx-auto flex items-left">
-      <h1 onClick={goHome} className="flex items-center text-blue-300 text-2xl lg:text-3xl xl:text-4xl font-bold tracking-wide ml-auto justify-start hover:cursor-pointer focus:cursor-alias ">
-        <img src={Logo} alt="Logo" className="mr-2 w-8 h-8 lg:w-10 lg:h-10 xl:w-12 xl:h-12" />
-        <span className="hidden lg:block">Library Manager</span>
-      </h1>
-        <div className="flex space-x-2 ml-auto justify-end">
-          <div className="relative inline-block" ref={dropdownRef}>
-            <button onClick={toggleDropdown} className="bg-blue-900 text-white px-4 py-2 rounded font-semibold hover:bg-blue-800 focus:ring-4 focus:ring-blue-600">
+    <header className="bg-gray-100 shadow-lg py-4">
+      <div className="container mx-auto flex items-center justify-between px-4 lg:px-8">
+        <h1 onClick={goHome} className="flex items-center text-gray-800 text-2xl lg:text-3xl font-bold cursor-pointer">
+          <img src={Logo} alt="Logo" className="w-10 h-10 lg:w-12 lg:h-12 mr-2 rounded-full" />
+          <span className="hidden lg:block">Library Manager</span>
+        </h1>
+        <div className="flex items-center space-x-4">
+          {/* Dropdown for New */}
+          <div className="relative">
+            <button
+              onClick={toggleDropdown}
+              className="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-400 focus:ring-2 focus:ring-gray-400"
+            >
               <FontAwesomeIcon icon={isDropdownOpen ? faAngleUp : faAngleDown} className="mr-2" /> New
             </button>
-            <div className={`absolute z-10 mt-2 w-52 bg-white shadow-lg rounded-md ${isDropdownOpen ? 'block' : 'hidden'} transition duration-300 transform-gpu origin-top`} >
-              <div className="py-1">
-                <button onClick={onAddBookClick} className="block w-full px-1 py-1 text-gray-800 hover:bg-gray-200">
+            <div
+              ref={dropdownRef}
+              className={`absolute z-10 mt-2 w-52 bg-white shadow-lg rounded-md ${isDropdownOpen ? 'block' : 'hidden'}`}
+            >
+              <div className="py-2">
+                <button onClick={onAddBookClick} className="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200">
                   <FontAwesomeIcon icon={faBook} className="mr-2" /> Add New Book
                 </button>
-                <button onClick={onAddAuthorClick} className="block w-full px-2 py-1 text-gray-800 hover:bg-gray-200">
-                  <FontAwesomeIcon icon={faUser} className="mr-1" /> Add New Author
+                <button onClick={onAddAuthorClick} className="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200">
+                  <FontAwesomeIcon icon={faUser} className="mr-2" /> Add New Author
                 </button>
-                <button onClick={onAddBorrowerClick} className="block w-full px-2 py-1 text-gray-800 hover:bg-gray-200">
-                  <FontAwesomeIcon icon={faUser} className="mr-1" /> Add New Borrower
+                <button onClick={onAddBorrowerClick} className="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200">
+                  <FontAwesomeIcon icon={faUser} className="mr-2" /> Add New Borrower
                 </button>
               </div>
             </div>
           </div>
 
-          <div className="relative inline-block text-left" ref={updateDropdownRef}>
-            <button onClick={toggleUpdateDropdown} className="bg-blue-800 text-white px-4 py-2 rounded font-semibold hover:bg-blue-700 focus:ring-4 focus:ring-blue-500">
+          {/* Dropdown for Update */}
+          <div className="relative">
+            <button
+              onClick={toggleUpdateDropdown}
+              className="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-400 focus:ring-2 focus:ring-gray-400"
+            >
               <FontAwesomeIcon icon={isUpdateDropdownOpen ? faAngleUp : faAngleDown} className="mr-2" /> Update
             </button>
-            <div className={`absolute z-10 mt-2 w-56 bg-white shadow-lg rounded-md ${isUpdateDropdownOpen ? 'block' : 'hidden'} transition duration-300 transform-gpu origin-top`}>
-              <div className="py-1 text-left">
-                <button onClick={onUpdateBookClick} className="block w-full px-2 py-1 text-gray-800 hover:bg-gray-200">
+            <div
+              ref={updateDropdownRef}
+              className={`absolute z-10 mt-2 w-52 bg-white shadow-lg rounded-md ${isUpdateDropdownOpen ? 'block' : 'hidden'}`}
+            >
+              <div className="py-2">
+                <button onClick={onUpdateBookClick} className="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200">
                   <FontAwesomeIcon icon={faEdit} className="mr-2" /> Update Book Details
                 </button>
-                <button onClick={onUpdateAuthorClick} className="block w-full px-2 py-1 text-gray-800 hover:bg-gray-200">
+                <button onClick={onUpdateAuthorClick} className="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200">
                   <FontAwesomeIcon icon={faEdit} className="mr-2" /> Update Author Details
                 </button>
-                <button onClick={onUpdateBorrowerClick} className="block w-full px-2 py-1 text-gray-800 hover:bg-gray-200">
+                <button onClick={onUpdateBorrowerClick} className="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200">
                   <FontAwesomeIcon icon={faEdit} className="mr-2" /> Update Borrower Details
                 </button>
               </div>
             </div>
           </div>
 
-          <div className="relative inline-block text-left" ref={deleteDropdownRef}>
-            <button onClick={toggleDeleteDropdown} className="bg-blue-700 text-red-400 px-4 py-2 rounded font-semibold hover:bg-blue-600 focus:ring-4 focus:ring-red-400">
+          {/* Dropdown for Delete */}
+          <div className="relative">
+            <button
+              onClick={toggleDeleteDropdown}
+              className="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-400 focus:ring-2 focus:ring-gray-400"
+            >
               <FontAwesomeIcon icon={isDeleteDropdownOpen ? faAngleUp : faAngleDown} className="mr-2" /> Delete
             </button>
-            <div className={`absolute z-10 mt- w-48 bg-white shadow-lg rounded-md ${isDeleteDropdownOpen ? 'block' : 'hidden'} transition duration-300 transform-gpu origin-top`}>
-              <div className="py-1 text-left">
-                <button onClick={onDeleteBookClick} className="block w-full px-2 py-1 text-gray-800 hover:bg-gray-200">
+            <div
+              ref={deleteDropdownRef}
+              className={`absolute z-10 mt-2 w-52 bg-white shadow-lg rounded-md ${isDeleteDropdownOpen ? 'block' : 'hidden'}`}
+            >
+              <div className="py-2">
+                <button onClick={onDeleteBookClick} className="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200">
                   <FontAwesomeIcon icon={faTrash} className="mr-2" /> Delete Book
                 </button>
-                <button onClick={onDeleteBorrowerClick} className="block w-full px-2 py-1 text-gray-800 hover:bg-gray-200">
+                <button onClick={onDeleteBorrowerClick} className="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200">
                   <FontAwesomeIcon icon={faTrash} className="mr-2" /> Delete Borrower
                 </button>
               </div>
             </div>
           </div>
 
-          <button onClick={onCheckinClick} className="bg-blue-600 text-white px-4 mb-2 rounded font-semibold hover:bg-blue-500 focus:ring-4 focus:ring-blue-400">
-            <FontAwesomeIcon icon={faCheck} className="mr-2" />Book Checkin
+          {/* Book Checkin and Checkout Buttons */}
+          <button
+            onClick={onCheckinClick}
+            className="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-400 focus:ring-2 focus:ring-gray-400"
+          >
+            <FontAwesomeIcon icon={faCheck} className="mr-2" /> Checkin
+          </button>
+          <button
+            onClick={onCheckoutClick}
+            className="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-400 focus:ring-2 focus:ring-gray-400"
+          >
+            <FontAwesomeIcon icon={faCheck} className="mr-2" /> Checkout
           </button>
 
-          <button onClick={onCheckoutClick} className="bg-blue-600 text-white px-4 mb-2 rounded font-semibold hover:bg-blue-500 focus:ring-4 focus:ring-blue-400">
-            <FontAwesomeIcon icon={faCheck} className="mr-2 " />Book Checkout
-          </button>
+          {/* User Profile and Logout */}
+          <div className="relative">
+            <button
+              onClick={onProfileClick}
+              className="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-400 focus:ring-2 focus:ring-gray-400"
+            >
+              <FontAwesomeIcon icon={faUserCircle} className="mr-2" /> Profile
+            </button>
+            <div className={`absolute z-10 mt-2 w-40 bg-white shadow-lg rounded-md hidden`}>
+              <button onClick={onLogoutClick} className="block w-full px-4 py-2 text-gray-800 hover:bg-gray-200">
+                <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" /> Logout
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
