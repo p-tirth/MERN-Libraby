@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import backgroundImage from '../libimg.jpg';
 
 const Home = ({
   showBooks,
@@ -43,51 +44,51 @@ const Home = ({
   }, [forceUpdate]);
 
   const triggerUpdate = () => {
-    setForceUpdate(prev => !prev); // Toggle forceUpdate to trigger data fetching
+    setForceUpdate(prev => !prev);
+  };
+
+  const Card = ({ children }) => {
+    return <div className="bg-white bg-opacity-80 rounded-lg shadow-md p-6 mb-8">{children}</div>;
   };
 
   const StatCard = ({ title, count, onClickHandle }) => {
     return (
-      <div className="bg-gray-900 rounded-lg overflow-hidden shadow-md p-6 cursor-pointer hover:bg-gray-800 transition duration-200">
-        <p className="font-semibold text-center text-white">{title}</p>
-        <p className="text-center text-4xl mt-4 text-white">{count}</p>
+      <div
+        className="bg-white bg-opacity-90 rounded-lg shadow-md p-4 cursor-pointer focus:scale-95 focus:ring-3 focus:ring-blue-400 hover:scale-105 transition-transform transition-ring transition-duration-100"
+        onClick={onClickHandle}
+        tabIndex={0}
+      >
+        <p className="font-semibold text-center text-gray-800">{title}</p>
+        <p className="text-center text-4xl mt-2 text-gray-600">{count}</p>
       </div>
     );
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="font-bold text-4xl text-center mb-8">Welcome to the Library Management System</h1>
-      <p className="text-lg text-center mb-12">Books organized, knowledge accessed: Simplify your library management.</p>
+    <div
+      className="container mx-auto px-4 py-8"
+      style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+    >
+      <div className="bg-white bg-opacity-80 rounded-lg p-8">
+        <h1 className="font-bold text-3xl text-center mb-8 text-gray-900">Welcome to the Library Management System</h1>
+        <p className="text-center text-lg mb-8 text-gray-700">Books organized, knowledge accessed: Simplify your library management.</p>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="col-span-3 lg:col-span-1">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <StatCard title="Total Books" onClickHandle={showBooks} count={counts.books} />
-        </div>
-        <div className="col-span-3 lg:col-span-1">
           <StatCard title="Total Authors" onClickHandle={showAuthors} count={counts.authors} />
-        </div>
-        <div className="col-span-3 lg:col-span-1">
           <StatCard title="Total Borrowers" onClickHandle={showBorrowers} count={counts.borrowers} />
         </div>
-        <div className="col-span-3 lg:col-span-1">
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
           <StatCard title="Checked Out Books" onClickHandle={showCheckoutBooks} count={counts.booksWithBorrower} />
-        </div>
-        <div className="col-span-3 lg:col-span-1">
           <StatCard title="Borrowers without Books" onClickHandle={showBorrowersWithoutBook} count={counts.borrowersWithoutBook} />
         </div>
-        <div className="col-span-3 lg:col-span-1">
-          <StatCard title="Remaining Books" onClickHandle={showRemainingBooks} count={counts.books - counts.booksWithBorrower} />
-        </div>
-      </div>
 
-      <div className="flex justify-center mt-12">
-        <button
-          onClick={triggerUpdate}
-          className="bg-gray-700 text-gray-300 py-3 px-8 rounded-lg hover:bg-gray-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-700"
-        >
-          Force Refresh Counts
-        </button>
+        <div className="flex justify-center mt-8">
+          <button onClick={triggerUpdate} className="bg-gray-800 text-white py-2 px-6 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-700">
+            Force Refresh Counts
+          </button>
+        </div>
       </div>
     </div>
   );
