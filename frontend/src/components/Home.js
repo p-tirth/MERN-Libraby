@@ -58,7 +58,7 @@ const Home = ({
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="font-bold text-4xl text-center mb-8">Welcome to the Library Management System</h1>
-      <p className="text-lg text-center mb-12">Organize, manage, and simplify your library with ease.</p>
+      <p className="text-lg text-center mb-12">Books organized, knowledge accessed: Simplify your library management.</p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="col-span-3 lg:col-span-1">
