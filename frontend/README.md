@@ -104,6 +104,3 @@
  - `books` to `authors` and `books` to `borrowers` are one-to-one relationship
  - `authors` to `books` and `borrowers` to `books` are one-to-many relationship
  - New components have been added like show all books, show all checked out bookss, show alll avallable books, etc. These are not in nav bar but clicking different Status components from the home page will take you to the respective pages. 
-
-# Contributed by:
- - Sayak Ghorai [(github/sayakghorai34)](https://github.com/sayakghorai34), 29th May 2024 
